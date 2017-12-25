@@ -17,7 +17,7 @@ This app allows the customer of a restaurant to do diffrent actions:
 1. Order from the restaurant menu.
 2. Ask for the check.
 3. "Watier come please" button.
-4. Chat with staff 
+4. Chat with staff.
 
 
 
