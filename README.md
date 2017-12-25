@@ -1,5 +1,5 @@
 # Resturant-app
-Full-Stack project, restaurant customer services (order, chat, bill)
+Full-Stack project, restaurant customer services (order, chat, bill, etc.)
 
 
 ###### This project is under construction
