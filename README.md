@@ -25,11 +25,11 @@ This app allows the customer of a restaurant to do diffrent actions:
 
 
 
-Click on each category on the menu in the home page, will lead to the dishes on the that category.
+Click on each category on the menu in the home page, will lead to the dishes on the that category:
 <img src="https://github.com/Yoavlo/Resturant-app/blob/master/jegesh-restaurant-perks-5cadcaf80b8e/readmeimages/orderPage.bmp">
 
 
 
-A click on the "ask for the check" button will open a dialog on the client side
+A click on the "ask for the check" button will open a dialog on the client side:
 <img src="https://github.com/Yoavlo/Resturant-app/blob/master/jegesh-restaurant-perks-5cadcaf80b8e/readmeimages/dialog.bmp">
 
