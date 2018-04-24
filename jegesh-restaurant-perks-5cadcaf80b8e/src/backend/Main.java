@@ -39,7 +39,7 @@ public class Main {
 
    public static void main(String[] args) {
 	   
-	  
+	  test
 		DbSessionManager sessionManager = new DbSessionManager();
 	   Order or= new Order();
 		or.setComment("comment");
