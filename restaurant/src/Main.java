@@ -44,7 +44,7 @@ public class Main {
 
    public static void main(String[] args) {
 	  
-	   int b,b1,b2,b3, b4;
+	   int b,b1,b2,b3, b4, b5;
 	
 //	   WaiterHelp or= new WaiterHelp();
 //	   or.setTableNumber(12);
