@@ -22,6 +22,8 @@ public class Order {
 	
 	String order;
 	
+	float prince;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column
@@ -64,6 +66,14 @@ public class Order {
 	public void setOrder(String order) {
 		this.order = order;
 	}
+	public float getPrince() {
+		return prince;
+	}
+	public void setPrince(float prince) {
+		this.prince = prince;
+	}
+	
+	
 	
 	
 

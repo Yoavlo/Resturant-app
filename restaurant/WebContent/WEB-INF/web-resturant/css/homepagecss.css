@@ -1,0 +1,18 @@
+.resume-item
+{
+	cursor: pointer;
+}
+
+.addButton ,.removeButton
+{
+	height:7%;
+	width: 7%;
+	
+}
+
+.btn
+{
+	background-color:#bd5000;
+	
+}
+

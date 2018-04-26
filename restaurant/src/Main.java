@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,6 +44,39 @@ public class Main {
 	
 
    public static void main(String[] args) {
+	   System.out.println("main");
+	   MangerBoardMenu window = MangerBoardMenu.getInstance();
+	   
+	//window.getButtonHelp().setLabel("main 222");
+	   
+	   window.getFrame().setVisible(true);
+	   System.out.println("window help from menu"+window.getButtonHelp().hashCode());
+	   window.getButtonHelp().setLabel("window1");
+	   MangerBoardMenu window2 = MangerBoardMenu.getInstance();
+	   System.out.println("window help from menu"+window2.getButtonHelp().hashCode());
+	   window2.getButtonHelp().setLabel("window2");
+	 
+//	   if( MangerBoardMenu.getButtonHelp()==null)
+//	   {
+//		   System.out.println("null");
+//	   }
+//	   MangerBoardMenu.getButtonHelp().setLabel("help (+");
+	  // System.out.println("MangerBoardMenu.getButtonHelp(): "+MangerBoardMenu.getButtonHelp().hashCode());
+	   
+	//   MangerBoardMenu.setTextforButtonHelp("main 2");
+	   
+	   System.out.println("main");
+//		DbSessionManager sessionManager = new DbSessionManager();
+//        Session session = sessionManager.getSessionFactoryInstance().openSession();
+//        WaiterHelp waiterhelp= new WaiterHelp();
+//        waiterhelp.setTableNumber(12);
+//        LocalDateTime localDateTime= LocalDateTime.now().withSecond(0).withNano(0);
+//        waiterhelp.setTime(localDateTime.toLocalTime().toString() );
+//        
+//        session.beginTransaction();
+//        session.save(waiterhelp);
+   //     session.getTransaction().commit();
+		
 	  
 
 	
@@ -53,17 +87,18 @@ public class Main {
 //		Session session = sessionManager.getSessionFactoryInstance().openSession();
 //		session.save(or);
 //		session.close();
-	   WaiterHelpServlet servlet= new WaiterHelpServlet();
 	   
-	   ArrayList<WaiterHelp> allWaiterHelp= (ArrayList) servlet.getAllWaiterHelpData();
-	   for(WaiterHelp waiterHelp: allWaiterHelp)
-	   {
-		   System.out.println(waiterHelp.getTableNumber());
-	   }
-	
+	   
+//	   WaiterHelpServlet servlet= new WaiterHelpServlet();
+//	   
+//	   ArrayList<WaiterHelp> allWaiterHelp= (ArrayList) servlet.getAllWaiterHelpData();
+//	   for(WaiterHelp waiterHelp: allWaiterHelp)
+//	   {
+//		   System.out.println(waiterHelp.getTableNumber());
+//	   }
+//	
 	   
 		
-	   System.out.println("bla: ");
 	   
 //		EventQueue.invokeLater(new Runnable() {
 //			public void run() {
