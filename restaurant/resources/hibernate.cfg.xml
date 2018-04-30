@@ -27,5 +27,6 @@
         <mapping class="backend.entities.WaiterHelp"/>
          <mapping class="backend.entities.Order"/>
           <mapping class="backend.entities.Check"/>
+            <mapping class="backend.entities.Dish"/>
         </session-factory>
         </hibernate-configuration>

@@ -32,9 +32,11 @@ public class CheckServlet {
         Session session = sessionManager.getSessionFactoryInstance().openSession();
         Check check= new Check();
         Order order= orderParam;
-       check.setOrder(order);
+        
+       ///check.setOrder(order);
         LocalDateTime localDateTime= LocalDateTime.now().withSecond(0).withNano(0); 
         check.setTime(localDateTime.toLocalTime().toString());
+        
 	    session.beginTransaction();
 	    session.save(check);
 	    session.getTransaction().commit();
@@ -49,7 +51,7 @@ public class CheckServlet {
        
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery criteria = builder.createQuery(Check.class);
-        Root<WaiterHelp> root = criteria.from(Check.class);
+        Root<Check> root = criteria.from(Check.class);
         Query query = session.createQuery(criteria);
 
         List<Check> allCheck = query.getResultList();

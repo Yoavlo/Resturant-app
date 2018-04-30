@@ -7,52 +7,38 @@ import javax.persistence.*;
 public class Check {
 	
     @Id
-	@Column(name="idCheck")
+	@Column
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int idCheck; //primary key
-    
-//    @Column
-//	int TableNumber;
-//    
+
     @Column
 	String time;
-    
-//    @Column
-//	float price;
- 
 
-    @ManyToOne
-    @JoinColumn(name = "order")
-	Order order; //foreign key
+    @OneToOne
+    @JoinColumn
+	Order idorder; //foreign key
+    
+    
 	public int getIdCheck() {
 		return idCheck;
 	}
 	public void setIdCheck(int idCheck) {
 		this.idCheck = idCheck;
 	}
-//	public int getTableNumber() {
-//		return TableNumber;
-//	}
-//	public void setTableNumber(int tableNumber) {
-//		TableNumber = tableNumber;
-//	}
+
 	public String getTime() {
 		return time;
 	}
 	public void setTime(String time) {
 		this.time = time;
 	}
-//	public float getPrice() {
-//		return price;
-//	}
-//	public void setPrice(float price) {
-//		this.price = price;
-//	}
-	public Order getOrder() {
-		return order;
+	
+	
+	public Order getidorder() {
+		return idorder;
 	}
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setidorder(Order idorder) {
+		this.idorder = idorder;
 	}
 	
 	

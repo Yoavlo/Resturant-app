@@ -5,24 +5,24 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="order")
+@Table(name="order2")
 public class Order {
 
+	
 	int idOrder;
 	
 
 	String comment;
 	
 	
-	String timeOfOrder;
-	
+	String time;
 	
 	int tableNumber;
 	
 	
-	String order;
+	String orderDishes;
 	
-	float prince;
+	double price;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -44,14 +44,14 @@ public class Order {
 	}
 	
 	@Column
-	public String getTimeOfOrder() {
-		return timeOfOrder;
+	public String getTime() {
+		return time;
 	}
-	public void setTimeOfOrder(String timeOfOrder) {
-		this.timeOfOrder = timeOfOrder;
+	public void setTime(String time) {
+		this.time = time;
 	}
 	
-	@Column
+	@Column(name="tablenumber")
 	public int getTableNumber() {
 		return tableNumber;
 	}
@@ -60,17 +60,17 @@ public class Order {
 	}
 	
 	@Column
-	public String getOrder() {
-		return order;
+	public String getOrderDishes() {
+		return orderDishes;
 	}
-	public void setOrder(String order) {
-		this.order = order;
+	public void setOrderDishes(String order) {
+		this.orderDishes = order;
 	}
-	public float getPrince() {
-		return prince;
+	public double getPrice() {
+		return price;
 	}
-	public void setPrince(float prince) {
-		this.prince = prince;
+	public void setPrice(double prince) {
+		this.price = prince;
 	}
 	
 	

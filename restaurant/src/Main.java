@@ -24,7 +24,12 @@ import com.google.gson.Gson;
 
 import Swing.MangerBoardMenu;
 import backend.DbSessionManager;
+import backend.entities.Check;
+import backend.entities.Dish;
+import backend.entities.Order;
 import backend.entities.WaiterHelp;
+import backend.servlet.CheckServlet;
+import backend.servlet.DishServlet;
 import backend.servlet.WaiterHelpServlet;
 
 
@@ -44,17 +49,82 @@ public class Main {
 	
 
    public static void main(String[] args) {
+	   
 	   System.out.println("main");
-	   MangerBoardMenu window = MangerBoardMenu.getInstance();
 	   
-	//window.getButtonHelp().setLabel("main 222");
+	 DishServlet dishServlet= new DishServlet();
+	 
+		  ArrayList<Dish> allDishes= (ArrayList)dishServlet.getAllDishes();
+		  int count=1;
+		for(Dish dish: allDishes)
+		{
+			
+			System.out.println(dish.getName()+ "category"+dish.getInfo());
+		}
 	   
+//	   Dish dish= new Dish();
+//	   dish.setAvailable(true);
+//
+//	   dish.setInfo("Fresh and testy Ice cream");
+//	   dish.setName("Ice cream");
+//	   dish.setPrice(15);
+//		DbSessionManager sessionManager = new DbSessionManager();
+//	     Session session = sessionManager.getSessionFactoryInstance().openSession();
+//	     session.beginTransaction();
+//	     session.save(dish);
+//	     session.getTransaction().commit();
+//	   
+	//	ArrayList<Check> allChecks= (ArrayList)CheckServlet.getAllChecks();
+//		for(Check check: allChecks)
+//		{
+//			System.out.println("check.getidorder().getTableNumber()"+check.getidorder().getTableNumber());
+//	 
+//		}
+		  
+	  
+	  // Order order= DishServlet.getOrderById(3);
+//	   System.out.println(order.getComment());
+//	   System.out.println(order.getTableNumber());
+//		order.setComment("this is a order from main");
+//		order.setOrderDishes("1 pizza 2 water");
+//		order.setPrice(10);
+//		order.setTableNumber(12);
+//		order.setIdOrder(3);
+//		order.setTime("now 7:13");
+	
+//		 Check check= new Check();
+//	   check.setidorder(order);
+//	   check.setTime("now 6:53");
+//	   
+//		DbSessionManager sessionManager = new DbSessionManager();
+//	     Session session = sessionManager.getSessionFactoryInstance().openSession();
+//	     session.beginTransaction();
+//	     session.save(check);
+//	     session.getTransaction().commit(); 
+//	   
+	   /*
+	    Save order in db
+	    	   Order order= new Order();
+	   order.setComment("this is a order from main");
+	   order.setOrderDishes("1 pizza 2 water");
+	   order.setPrice(10);
+	   order.setTableNumber(12);
+	   order.setTime("now");
+	   
+		DbSessionManager sessionManager = new DbSessionManager();
+     Session session = sessionManager.getSessionFactoryInstance().openSession();
+     session.beginTransaction();
+     session.save(order);
+     session.getTransaction().commit(); 
+	    */
+
+   MangerBoardMenu window = MangerBoardMenu.getInstance();   
 	   window.getFrame().setVisible(true);
-	   System.out.println("window help from menu"+window.getButtonHelp().hashCode());
-	   window.getButtonHelp().setLabel("window1");
-	   MangerBoardMenu window2 = MangerBoardMenu.getInstance();
-	   System.out.println("window help from menu"+window2.getButtonHelp().hashCode());
-	   window2.getButtonHelp().setLabel("window2");
+//	   System.out.println("window help from menu"+window.getButtonHelp().hashCode());
+//	   window.getButtonHelp().setLabel("window1");
+//	   MangerBoardMenu window2 = MangerBoardMenu.getInstance();
+//	   System.out.println("window help from menu"+window2.getButtonHelp().hashCode());
+//	   window2.getButtonHelp().setLabel("window2");
 	 
 //	   if( MangerBoardMenu.getButtonHelp()==null)
 //	   {
