@@ -2,6 +2,7 @@ package backend.servlet;
 
 import javax.ws.rs.Path;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -104,13 +105,27 @@ public class DishServlet {
         CriteriaQuery criteria = builder.createQuery(Dish.class);
         Root<Dish> root = criteria.from(Dish.class);
         Query query = session.createQuery(criteria);
-        System.out.println("getAllDishes" );
+     //   System.out.println("getAllDishes" );
         List<Dish> allWaiterHelp = query.getResultList();
-        System.out.println("getAllDishes" +allWaiterHelp.size());
+       // System.out.println("getAllDishes" +allWaiterHelp.size());
  
   
 		return allWaiterHelp;
         
+	}
+
+	public static void updateAllDishes(ArrayList<Dish> allDishes) {
+		DbSessionManager sessionManager = new DbSessionManager();
+        Session session = sessionManager.getSessionFactoryInstance().openSession();
+        
+        for(Dish dish: allDishes)
+        {
+        	session.beginTransaction();
+        	session.saveOrUpdate(dish);
+
+            session.getTransaction().commit();
+    		
+        }
 	}
 	
 	

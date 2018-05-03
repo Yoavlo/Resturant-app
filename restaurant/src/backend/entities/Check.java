@@ -3,22 +3,22 @@ package backend.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="check")
+@Table(name="checkcustomer")
 public class Check {
 	
-    @Id
-	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	int idCheck; //primary key
 
-    @Column
+
 	String time;
 
-    @OneToOne
-    @JoinColumn
-	Order idorder; //foreign key
+
+
+	int idorder; //foreign key
     
-    
+    @Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+    @Column
 	public int getIdCheck() {
 		return idCheck;
 	}
@@ -26,6 +26,7 @@ public class Check {
 		this.idCheck = idCheck;
 	}
 
+    @Column
 	public String getTime() {
 		return time;
 	}
@@ -33,11 +34,13 @@ public class Check {
 		this.time = time;
 	}
 	
-	
-	public Order getidorder() {
+    @Column
+//    @OneToOne
+//    @JoinColumn(name="idorder")
+	public int getidorder() {
 		return idorder;
 	}
-	public void setidorder(Order idorder) {
+	public void setidorder(int idorder) {
 		this.idorder = idorder;
 	}
 	

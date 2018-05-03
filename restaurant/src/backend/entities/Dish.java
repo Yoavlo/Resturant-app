@@ -13,6 +13,7 @@ public class Dish {
 	String info;
 	String name;
 	String imagePath;
+	String category;
 	//int translation_id; //apper in Trello. 
 	
 	@Id
@@ -59,6 +60,13 @@ public class Dish {
 	
 	
 	
+	@Column
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	@Column
 	public String getName() {
 		return name;

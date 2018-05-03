@@ -49,19 +49,53 @@ public class Main {
 	
 
    public static void main(String[] args) {
+		   MangerBoardMenu window = MangerBoardMenu.getInstance();   
+		   window.getFrame().setVisible(true);
+
 	   
-	   System.out.println("main");
+//		   Order order= DishServlet.getOrderById(3);
+//		   System.out.println(order.getComment());
+//		   System.out.println(order.getTableNumber());
+//			order.setComment("this is a order from main");
+//			order.setOrderDishes("1 pizza 2 water");
+//			order.setPrice(10);
+//			order.setTableNumber(12);
+//		//	order.setIdOrder(3);
+//			order.setTime("now 7:13");
+		
+//	  
+	   /*
+	    //save check in db
+		 Check check= new Check();
+		   check.setidorder(1);
+		   check.setTime("11:16");
+		   
+					DbSessionManager sessionManager = new DbSessionManager();
+				     Session session = sessionManager.getSessionFactoryInstance().openSession();
+				     session.beginTransaction();
+				     session.save(check);
+				     session.getTransaction().commit(); 
+				     */
+
+//			ArrayList<Check> allChecks= (ArrayList)CheckServlet.getAllChecks();
+//		for(Check check: allChecks)
+//		{
+//			System.out.println("check.getidorder().getTableNumber()"+check.getidorder().getTableNumber());
+//	 
+//		}
+
+
 	   
-	 DishServlet dishServlet= new DishServlet();
-	 
-		  ArrayList<Dish> allDishes= (ArrayList)dishServlet.getAllDishes();
-		  int count=1;
-		for(Dish dish: allDishes)
-		{
-			
-			System.out.println(dish.getName()+ "category"+dish.getInfo());
-		}
-	   
+//	 DishServlet dishServlet= new DishServlet();
+//	 
+//		  ArrayList<Dish> allDishes= (ArrayList)dishServlet.getAllDishes();
+//		  int count=1;
+//		for(Dish dish: allDishes)
+//		{
+//			
+//			System.out.println(dish.getName()+ "category"+dish.getInfo());
+//		}
+//	   
 //	   Dish dish= new Dish();
 //	   dish.setAvailable(true);
 //
@@ -74,52 +108,25 @@ public class Main {
 //	     session.save(dish);
 //	     session.getTransaction().commit();
 //	   
-	//	ArrayList<Check> allChecks= (ArrayList)CheckServlet.getAllChecks();
-//		for(Check check: allChecks)
-//		{
-//			System.out.println("check.getidorder().getTableNumber()"+check.getidorder().getTableNumber());
-//	 
-//		}
+
 		  
-	  
-	  // Order order= DishServlet.getOrderById(3);
-//	   System.out.println(order.getComment());
-//	   System.out.println(order.getTableNumber());
-//		order.setComment("this is a order from main");
-//		order.setOrderDishes("1 pizza 2 water");
-//		order.setPrice(10);
-//		order.setTableNumber(12);
-//		order.setIdOrder(3);
-//		order.setTime("now 7:13");
 	
-//		 Check check= new Check();
-//	   check.setidorder(order);
-//	   check.setTime("now 6:53");
+	   
+	  //  Save order in db
+//	    	   Order order= new Order();
+//	   order.setComment("with out onion");
+//	   order.setOrderDishes("Water");
+//	   order.setPrice(10);
+//	   order.setTableNumber(12);
+//	   order.setTime("11:01");
 //	   
 //		DbSessionManager sessionManager = new DbSessionManager();
-//	     Session session = sessionManager.getSessionFactoryInstance().openSession();
-//	     session.beginTransaction();
-//	     session.save(check);
-//	     session.getTransaction().commit(); 
-//	   
-	   /*
-	    Save order in db
-	    	   Order order= new Order();
-	   order.setComment("this is a order from main");
-	   order.setOrderDishes("1 pizza 2 water");
-	   order.setPrice(10);
-	   order.setTableNumber(12);
-	   order.setTime("now");
-	   
-		DbSessionManager sessionManager = new DbSessionManager();
-     Session session = sessionManager.getSessionFactoryInstance().openSession();
-     session.beginTransaction();
-     session.save(order);
-     session.getTransaction().commit(); 
-	    */
+//     Session session = sessionManager.getSessionFactoryInstance().openSession();
+//     session.beginTransaction();
+//     session.save(order);
+//     session.getTransaction().commit(); 
+	//    */
 
-   MangerBoardMenu window = MangerBoardMenu.getInstance();   
-	   window.getFrame().setVisible(true);
 //	   System.out.println("window help from menu"+window.getButtonHelp().hashCode());
 //	   window.getButtonHelp().setLabel("window1");
 //	   MangerBoardMenu window2 = MangerBoardMenu.getInstance();
@@ -134,8 +141,7 @@ public class Main {
 	  // System.out.println("MangerBoardMenu.getButtonHelp(): "+MangerBoardMenu.getButtonHelp().hashCode());
 	   
 	//   MangerBoardMenu.setTextforButtonHelp("main 2");
-	   
-	   System.out.println("main");
+
 //		DbSessionManager sessionManager = new DbSessionManager();
 //        Session session = sessionManager.getSessionFactoryInstance().openSession();
 //        WaiterHelp waiterhelp= new WaiterHelp();
