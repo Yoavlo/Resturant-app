@@ -45,11 +45,12 @@ public class HomePageServlet{
 		return allCategories;
 	}
 	
-	
+//	
 	@POST
 	public void waiterComeHelp(@QueryParam("tableNumber") int tableNumber)
 	{
 		System.out.println("Table number: "+tableNumber+" requested help");
+		
 		
 		//send to manger app the request
 

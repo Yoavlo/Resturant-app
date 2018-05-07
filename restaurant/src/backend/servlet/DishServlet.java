@@ -128,6 +128,16 @@ public class DishServlet {
         }
 	}
 	
+	public static void saveDish(Dish dish)
+	{
+		DbSessionManager sessionManager = new DbSessionManager();
+        Session session = sessionManager.getSessionFactoryInstance().openSession();
+    	session.beginTransaction();
+    	session.saveOrUpdate(dish);
+
+        session.getTransaction().commit();
+	}
+	
 	
 
 }

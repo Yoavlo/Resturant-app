@@ -28,7 +28,7 @@
 	
 	
 	<!--Chat CSS -->
-	<link type="text/css" rel="stylesheet" href="D:\Softwear\notepad++\chat\css\style.css" />
+	<link type="text/css" rel="stylesheet" href="chat\css\style.css" />
 
     <!-- Custom styles for this template -->
     <link href="css/resume.min.css" rel="stylesheet">
@@ -44,9 +44,14 @@
 	 
 			 $(document).ready(function() {  
 			  var count=0
+			  
 			  $("#breakfastcontainer").hide();
+			  
 		
-			  $.get("http://localhost:8080/yaakovRestaurant/rs/HomePage", function(response){ //response is a string that contains the name of the categorys, like lunch. 
+			  
+		
+			 
+			 $.get("http://localhost:8080/yaakovRestaurant/rs/HomePage", function(response){ //response is a string that contains the name of the categorys, like lunch. 
 			  valuesOfCategorys= response.split(" ");	// valuesOfCategorys= ["breakfast", "lunch", "wine"];
 			 })
 			 .success(function() {
@@ -55,7 +60,7 @@
 			   })
 			  .fail(function() {
 				alert( "error" );
-			  });
+			  }); 
 			  
 				  
 				function setValuesInButtons()
@@ -123,11 +128,28 @@
 
 				
 				});
+					
+		
 				
 				
 				}); 
 				
 		
+				function sendWaiterRequest()
+				{
+					alert("sendWaiterRequest");
+
+					var tableNumber=10;
+					 $.post("http://localhost:8080/yaakovRestaurant/rs/WaiterHelp?tableNumber="+tableNumber, function(){
+						 })
+						.success(function() {	
+							alert("sendWaiterRequest sucess");
+						
+						  })
+					   .fail(function() {
+						alert( "error" );
+						});
+				}
 				
 				function billRequest()
 				{
@@ -143,20 +165,7 @@
 					});
 				}
 				
-				function sendWaiterRequest()
-				{
-					alert("sendWaiterRequest");
-
-					var tableNumber=10;
-					 $.post("http://localhost:8080/yaakovRestaurant/rs/HomePage/waiterRequest?tableNumber="+tableNumber, function(){
-						 })
-						.success(function() {	
-						$("#myModal").modal('show');
-						  })
-					   .fail(function() {
-						alert( "error" );
-						});
-				}
+			
 				
 				
 			
@@ -167,11 +176,12 @@
 
   <body id="page-top">
 
+	<!-- start of side navigator -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">
-        <span class="d-block d-lg-none">Start Bootstrap</span>
+        <span class="d-block d-lg-none">Resturant</span>
         <span class="d-none d-lg-block">
-          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="D:\Softwear\notepad++\images\homepage\logo.png" alt="">
+          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img\logo.png" alt="">
         </span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -197,7 +207,10 @@
         </ul>
       </div>
     </nav>
-
+    <!-- end of side navigator -->
+	
+	
+	<!-- start of title -->
     <div class="container-fluid p-0">
 
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
@@ -234,21 +247,25 @@
           </ul>
         </div>
       </section>
-
+      
+      <!-- End of title -->
+      
+      
+		<!-- start of menu -->
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
         <div class="my-auto" id="menu">
           <h2 class="mb-2">Menu</h2>
 		  <p class="mb-5">Our dishes are made only with the freshest ingredients for your pleasure and well being</p>
 		  
 
-
+	<!-- start of breakfast -->
           <div class="resume-item d-flex flex-column img-thumbnail flex-md-row mb-5" id="breakfast" >
             <div class="resume-content mr-auto">
               <h3 class="mb-0" >Breakfast</h3>
               <div class="subheading mb-3">The most important meal of the day</div>
               <p>Enjoy our vast & tasteful food</p>
 			  
-			  <img class="img-fluid img-profile rounded-circle img-responsive mx-auto mb-2" id="breakfastpicture" src="D:\Softwear\notepad++\images\homepage\breakfast.jpg" alt="" width="30%">
+			  <img class="img-fluid img-profile rounded-circle img-responsive mx-auto mb-2" id="breakfastpicture" src="img\categorys\breakfast.jpg" alt="" width="30%">
 			   <!-- Page Content -->
     <div class="container" id="breakfastcontainer">
 
@@ -257,7 +274,7 @@
       <div class="row">
 	  
         <div class="col-lg-4 col-sm-6 text-center mb-4" id="omeletdiv">
-          <img class="rounded-circle img-fluid d-block mx-auto"  src="../../images/menu/main/omelet.jpg" alt="">
+          <img class="rounded-circle img-fluid d-block mx-auto"  src="img\breakfast\omelet.jpg" alt="">
 		 
           <h3>
 		  Omelet 
@@ -268,7 +285,7 @@
 		
 		
         <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <img class="rounded-circle img-fluid d-block mx-auto" src="../../images/menu/main/pancake.jpg" alt="">
+          <img class="rounded-circle img-fluid d-block mx-auto" src="img\breakfast\pancake.jpg" alt="">
           <h3>pancake
             <small>10$</small>
           </h3>
@@ -277,7 +294,7 @@
 		
 		
         <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <img class="rounded-circle img-fluid d-block mx-auto" src="../../images/menu/main/porridge.jpg" alt="">
+          <img class="rounded-circle img-fluid d-block mx-auto" src="img\breakfast\porridge.jpg" alt="">
           <h3>banana cinnamon porridge
             <small>15$</small>
           </h3>
@@ -285,7 +302,7 @@
         </div>
 		
         <div class="col-lg-4 col-sm-6 text-center mb-4" style=>
-          <img class="rounded-circle img-fluid d-block mx-auto" src="../../images/menu/main/taco.jpg" alt="">
+          <img class="rounded-circle img-fluid d-block mx-auto" src="img\main\taco.jpg" alt="">
           <h3>Taco
             <small>10$</small>
           </h3>
@@ -312,7 +329,6 @@
     <!-- /.container -->
 
             </div>
-		<!--	<img src="D:\Softwear\notepad++\images\homepage\breakfast.jpg"> -->
 			
             <div class="resume-date text-md-right">
               <span class="text-primary">07:00-10:00</span>
@@ -325,7 +341,7 @@
               <div class="subheading mb-3">The most fun meal of the day</div>
               <p>Live once in a while</p>
 			  
-			  <img class="img-fluid img-profile rounded-circle img-responsive mx-auto mb-2" src="D:\Softwear\notepad++\images\homepage\dessert.jpg" alt="" width="30%">
+			  <img class="img-fluid img-profile rounded-circle img-responsive mx-auto mb-2" src="img\categorys\dessert.jpg" alt="" width="30%">
             </div>
 		<!--	<img src="D:\Softwear\notepad++\images\homepage\breakfast.jpg"> -->
 			
@@ -344,6 +360,10 @@
         </div>
 
       </section>
+      <!-- End of  menu -->
+      
+      
+      <!-- Start of chat -->
 
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
         <div class="my-auto">
@@ -379,6 +399,8 @@
 
         </div>
       </section>
+      
+       <!-- End of chat -->
 	  
 	      <!-- Footer -->
     <footer class="py-5 bg-dark">

@@ -18,23 +18,28 @@ import backend.DbSessionManager;
 import backend.entities.Category;
 import backend.entities.WaiterHelp;
 
-@Path("WaiterHelpServlet")
+
+//http://localhost:8080/yaakovRestaurant/rs/WaiterHelp
+@Path("WaiterHelp")
 public class WaiterHelpServlet {
 	
-	@POST
-	public void payBill(@QueryParam("tableNumber") int tableNumber )
-		
-	{
-		saveWaiterHelp(tableNumber);
-
-        
-        updateWaiterHelpButton();
-        
-     //   return true;
-		//code to send to manager app and watier.
-	}
+//	@POST
+//	public void payBill(@QueryParam("tableNumber") int tableNumber )
+//		
+//	{
+//		saveWaiterHelp(tableNumber);
+//
+//        
+//        updateWaiterHelpButton();
+//        
+//     //   return true;
+//		//code to send to manager app and watier.
+//	}
 	
-	private void saveWaiterHelp(int tableNumber) {
+	//http://localhost:8080/yaakovRestaurant/rs/WaiterHelp?tableNumber=14
+	@POST
+	public void saveWaiterHelp(@QueryParam("tableNumber") int tableNumber) {
+		System.out.println("Table number: "+tableNumber+" requested help");
 		DbSessionManager sessionManager = new DbSessionManager();
         Session session = sessionManager.getSessionFactoryInstance().openSession();
         WaiterHelp waiterhelp= new WaiterHelp();

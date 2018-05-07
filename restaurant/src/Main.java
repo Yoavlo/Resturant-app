@@ -30,6 +30,7 @@ import backend.entities.Order;
 import backend.entities.WaiterHelp;
 import backend.servlet.CheckServlet;
 import backend.servlet.DishServlet;
+import backend.servlet.HomePageServlet;
 import backend.servlet.WaiterHelpServlet;
 
 
@@ -51,6 +52,9 @@ public class Main {
    public static void main(String[] args) {
 		   MangerBoardMenu window = MangerBoardMenu.getInstance();   
 		   window.getFrame().setVisible(true);
+		   
+//		   HomePageServlet h= new HomePageServlet();
+//		   h.waiterComeHelp(12);
 
 	   
 //		   Order order= DishServlet.getOrderById(3);

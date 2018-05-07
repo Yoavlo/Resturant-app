@@ -57,6 +57,8 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JRadioButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JCheckBox;
 
 public class MangerBoardMenu {
 
@@ -64,17 +66,23 @@ public class MangerBoardMenu {
 	private JTable tableMenu;
 	private JTable tableWaiter;
 	private JTable tableCheck;
-	JLayeredPane layeredPane;
-	private JPanel[] allJPanels;
+	private static JLayeredPane layeredPane;
+	public static JPanel[] allJPanels;
 	  ArrayList<WaiterHelp> allWaiterHelp;
 	 private  Button buttonHelp;//= new Button();
 	  private ArrayList<Dish> allDishes;
 		int selectRow;
 		int selectCoulmn;
 		ArrayList<Check> allChecks;
+		JCheckBox chckbxAvailable ;
 	 
 	 
 	 private static MangerBoardMenu mangerBoardMenu;//= new MangerBoardMenu();
+	 private JTextField textFieldName;
+	 private JTextField textFieldInfo;
+	 private JTextField textFieldPrice;
+	 private JTextField textFieldCategory;
+	 private JTextField textFieldImagePath;
 
 	/**
 	 * Launch the application.
@@ -116,12 +124,13 @@ public class MangerBoardMenu {
 	
 		 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 701, 400);
+		frame.setBounds(100, 100, 702, 453);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Box verticalBox = Box.createVerticalBox();
 		verticalBox.setEnabled(false);
 		frame.getContentPane().add(verticalBox, BorderLayout.EAST);
+		frame.setJMenuBar( new Menu().getJMenuBar());
 		
 		Button buttonMenu = new Button("Menu");
 
@@ -138,7 +147,8 @@ public class MangerBoardMenu {
 
 		verticalBox.add(buttonChat);
 		
-		Button buttonCheck = new Button("Check");
+		Button buttonCheck = new Button("Checks +("+allChecks.size()+")");
+		
 
 		verticalBox.add(buttonCheck);
 		
@@ -171,7 +181,7 @@ public class MangerBoardMenu {
 		
 		
 		layeredPane.setLayer(panelCheck, 2);
-		panelCheck.setBounds(0, 53, 618, 300);
+		panelCheck.setBounds(0, 53, 618, 340);
 		layeredPane.add(panelCheck);
 		panelCheck.setLayout(null);
 		
@@ -179,7 +189,7 @@ public class MangerBoardMenu {
 	
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(0, 0, 618, 250);
+		scrollPane_3.setBounds(0, 31, 618, 256);
 		panelCheck.add(scrollPane_3);
 		
 
@@ -222,8 +232,14 @@ public class MangerBoardMenu {
 				
 			}
 		});
-		deleteCheckButton.setBounds(259, 261, 126, 26);
+		deleteCheckButton.setBounds(260, 300, 125, 25);
 		panelCheck.add(deleteCheckButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("Checks");
+		lblNewLabel_1.setIcon(new ImageIcon(MangerBoardMenu.class.getResource("/javax/swing/plaf/metal/icons/ocean/menu.gif")));
+		lblNewLabel_1.setFont(new Font("Yu Gothic UI", Font.ITALIC, 18));
+		lblNewLabel_1.setBounds(280, 0, 105, 16);
+		panelCheck.add(lblNewLabel_1);
 //		tableCheck.setModel(new DefaultTableModel(
 //			new Object[][] {
 //			},
@@ -235,13 +251,13 @@ public class MangerBoardMenu {
 		JPanel panelMenu = new JPanel();
 		
 		layeredPane.setLayer(panelMenu, 0);
-		panelMenu.setBounds(0, 53, 618, 300);
+		panelMenu.setBounds(0, 53, 618, 340);
 		layeredPane.add(panelMenu);
 		panelMenu.setLayout(null);
 		
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(0, 5, 618, 241);
+		scrollPane_2.setBounds(0, 34, 618, 254);
 		panelMenu.add(scrollPane_2);
 		
 	    model.addColumn("Table Number");
@@ -340,19 +356,25 @@ public class MangerBoardMenu {
 		
 		JButton btnSaveMenu = new JButton("save menu");
 
-		btnSaveMenu.setBounds(260, 261, 125, 25);
+		btnSaveMenu.setBounds(260, 301, 125, 25);
 		panelMenu.add(btnSaveMenu);
+		
+		JLabel lblNewLabel_2 = new JLabel("Menu");
+		lblNewLabel_2.setIcon(new ImageIcon(MangerBoardMenu.class.getResource("/com/sun/java/swing/plaf/windows/icons/TreeClosed.gif")));
+		lblNewLabel_2.setFont(new Font("Yu Gothic UI Light", Font.ITALIC, 18));
+		lblNewLabel_2.setBounds(271, 0, 114, 16);
+		panelMenu.add(lblNewLabel_2);
 		
 		JPanel panelHelpWaiter = new JPanel();
 		
 		layeredPane.setLayer(panelHelpWaiter, 0);
 		//panel_2.setBounds(0, 0, 373, 0);
-		panelHelpWaiter.setBounds(0, 53, 618, 300);
+		panelHelpWaiter.setBounds(0, 53, 618, 340);
 		layeredPane.add(panelHelpWaiter);
 		panelHelpWaiter.setLayout(null);
 	
 		JScrollPane scrollPaneTableWaiter = new JScrollPane();
-		scrollPaneTableWaiter.setBounds(0, 5, 618, 245);
+		scrollPaneTableWaiter.setBounds(0, 31, 618, 256);
 		scrollPaneTableWaiter.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	
 		panelHelpWaiter.add(scrollPaneTableWaiter);
@@ -385,9 +407,91 @@ public class MangerBoardMenu {
 		tableWaiter.setEnabled(true);
 		setValueOfCellsInMiddle(tableWaiter);
 		
-		JButton buttonSaveHelpStatus = new JButton("save help status");
-		buttonSaveHelpStatus.setBounds(259, 261, 125, 25);
+		JButton buttonSaveHelpStatus = new JButton("save");
+		buttonSaveHelpStatus.setBounds(260, 300, 125, 25);
 		panelHelpWaiter.add(buttonSaveHelpStatus);
+		
+		JLabel lblNewLabel = new JLabel("Customer help");
+		lblNewLabel.setIcon(new ImageIcon(MangerBoardMenu.class.getResource("/com/sun/java/swing/plaf/windows/icons/Question.gif")));
+		lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 18));
+		lblNewLabel.setBounds(280, 0, 225, 18);
+		panelHelpWaiter.add(lblNewLabel);
+		
+		JPanel createdishpanel = new JPanel();
+		layeredPane.setLayer(createdishpanel, 0);
+		createdishpanel.setBounds(0, 53, 618, 353);
+		layeredPane.add(createdishpanel);
+		createdishpanel.setLayout(null);
+		 chckbxAvailable = new JCheckBox("Available");
+		chckbxAvailable.setBounds(315, 99, 113, 25);
+		createdishpanel.add(chckbxAvailable);
+		
+		JButton btnSaveDish = new JButton("Save");
+		btnSaveDish.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Dish dish = new Dish();
+				dish.setAvailable(chckbxAvailable.isSelected());
+				dish.setCategory(textFieldCategory.getText());
+				dish.setImagePath(textFieldImagePath.getText());
+				dish.setName(textFieldName.getText());
+				dish.setInfo(textFieldInfo.getText());
+				dish.setPrice(Double.parseDouble(textFieldPrice.getText()));
+				DishServlet.saveDish(dish);
+			}
+		});
+		btnSaveDish.setBounds(260, 300, 125, 25);
+		createdishpanel.add(btnSaveDish);
+		
+		JLabel lblAdsa = new JLabel("Create Dish");
+		lblAdsa.setBounds(252, 13, 116, 16);
+		createdishpanel.add(lblAdsa);
+		
+		textFieldName = new JTextField();
+		textFieldName.setBounds(149, 61, 116, 22);
+		createdishpanel.add(textFieldName);
+		textFieldName.setColumns(10);
+		
+		JLabel lblName = new JLabel("Name:");
+		lblName.setBounds(49, 64, 56, 16);
+		createdishpanel.add(lblName);
+		
+		JLabel lblInfo = new JLabel("Info:");
+		lblInfo.setBounds(49, 103, 56, 16);
+		createdishpanel.add(lblInfo);
+		
+		textFieldInfo = new JTextField();
+		textFieldInfo.setColumns(10);
+		textFieldInfo.setBounds(149, 100, 116, 22);
+		createdishpanel.add(textFieldInfo);
+		
+		textFieldPrice = new JTextField();
+		textFieldPrice.setColumns(10);
+		textFieldPrice.setBounds(149, 137, 116, 22);
+		createdishpanel.add(textFieldPrice);
+		
+		JLabel lblPrice = new JLabel("Price:");
+		lblPrice.setBounds(49, 140, 56, 16);
+		createdishpanel.add(lblPrice);
+		
+		JLabel lblCategory = new JLabel("Category:");
+		lblCategory.setBounds(49, 174, 56, 16);
+		createdishpanel.add(lblCategory);
+		
+		textFieldCategory = new JTextField();
+		textFieldCategory.setColumns(10);
+		textFieldCategory.setBounds(149, 172, 116, 22);
+		createdishpanel.add(textFieldCategory);
+		
+		textFieldImagePath = new JTextField();
+		textFieldImagePath.setColumns(10);
+		textFieldImagePath.setBounds(417, 61, 116, 22);
+		createdishpanel.add(textFieldImagePath);
+		
+		JLabel lblImagePath = new JLabel("Image path:");
+		lblImagePath.setBounds(315, 64, 90, 16);
+		createdishpanel.add(lblImagePath);
+		
+
 		buttonSaveHelpStatus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//checkWhatValuesAreTrue(tableWaiter, 2);
@@ -428,7 +532,7 @@ public class MangerBoardMenu {
 		tableWaiter.setDefaultRenderer(String.class, centerRenderer);
 		*/
 		
-		allJPanels = new JPanel[] {panelCheck,panelMenu,panelHelpWaiter };
+		allJPanels = new JPanel[] {panelCheck,panelMenu,panelHelpWaiter, createdishpanel };
 			buttonCheck.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					showPanel(allJPanels[0]);
@@ -448,7 +552,6 @@ public class MangerBoardMenu {
 			buttonHelp.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					showPanel(allJPanels[2]);
-					buttonHelp.setLabel("bla");
 				}
 			});
 			buttonMenu.addActionListener(new ActionListener() {
@@ -612,7 +715,7 @@ public class MangerBoardMenu {
 		return modelForTableMenu;
 	}
 
-	private void showPanel( JPanel panel )
+	public static void showPanel( JPanel panel )
 	{
 
 		
@@ -723,5 +826,9 @@ public class MangerBoardMenu {
 	public JFrame getFrame()
 	{
 		return frame;
+	}
+
+	public static JPanel[] getAllJPanels() {
+		return allJPanels;
 	}
 }
