@@ -23,7 +23,7 @@ public class Menu {
 	{
 		jMenuBar= new JMenuBar();
 		menuCreate= new JMenu("Create");
-		createJMenuITem(menuCreate, "Create dish", "Create Category");
+		createJMenuITem(menuCreate, "Create dish", "Create Table number");
 		handleActionLisener();
 		
 		
@@ -53,9 +53,10 @@ public class Menu {
 					MangerBoardMenu.showPanel(MangerBoardMenu.getAllJPanels()[3]);
 					System.out.println("createddish was presses");
 				}
-				else if(e.getActionCommand().equals("Create Category"))
+				else if(e.getActionCommand().equals("Create Table number"))
 				{
-					System.out.println("Create Category was presses");
+					MangerBoardMenu.showPanel(MangerBoardMenu.getAllJPanels()[4]);
+					System.out.println("Create Table number was presses");
 				}
 				
 			}

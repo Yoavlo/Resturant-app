@@ -17,10 +17,7 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import com.google.gson.Gson;
 
 import Swing.MangerBoardMenu;
 import backend.DbSessionManager;

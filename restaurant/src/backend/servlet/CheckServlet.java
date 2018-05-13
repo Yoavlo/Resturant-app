@@ -24,25 +24,25 @@ import javax.ws.rs.POST;
 public class CheckServlet {
 	
 	
-//	@POST
-//	public void payBill(@QueryParam("tableNumber") int tableNumber, @QueryParam("order") Order orderParam  )
-//		
-//	{
-//		DbSessionManager sessionManager = new DbSessionManager();
-//        Session session = sessionManager.getSessionFactoryInstance().openSession();
-//        Check check= new Check();
-//        Order order= orderParam;
-//        
-//       ///check.setOrder(order);
-//        LocalDateTime localDateTime= LocalDateTime.now().withSecond(0).withNano(0); 
-//        check.setTime(localDateTime.toLocalTime().toString());
-//        
-//	    session.beginTransaction();
-//	    session.save(check);
-//	    session.getTransaction().commit();
-//		//code to send to manager app and watier.
-//	}
-//	
+	@POST
+	public void payBill(@QueryParam("idOrder") int idOrder  )
+		
+	{
+		DbSessionManager sessionManager = new DbSessionManager();
+        Session session = sessionManager.getSessionFactoryInstance().openSession();
+        Check check= new Check();
+        check.setidorder(idOrder);
+        
+       ///check.setOrder(order);
+        LocalDateTime localDateTime= LocalDateTime.now().withSecond(0).withNano(0); 
+        check.setTime(localDateTime.toLocalTime().toString());
+        
+	    session.beginTransaction();
+	    session.save(check);
+	    session.getTransaction().commit();
+		//code to send to manager app and watier.
+	}
+	
 	public static List<Check> getAllChecks()
 	{
 		DbSessionManager sessionManager = new DbSessionManager();

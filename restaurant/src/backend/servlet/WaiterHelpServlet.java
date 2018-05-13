@@ -61,7 +61,7 @@ public class WaiterHelpServlet {
 	//	MangerBoardMenu.
 	}
 
-	public List<WaiterHelp> getAllWaiterHelpData()
+	public static List<WaiterHelp> getAllWaiterHelpData()
 	{
 		DbSessionManager sessionManager = new DbSessionManager();
         Session session = sessionManager.getSessionFactoryInstance().openSession();

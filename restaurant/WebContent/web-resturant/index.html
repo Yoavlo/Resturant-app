@@ -40,27 +40,44 @@
 
 	
 	 <script>  
-	 
+	 var allCategorys
 	 
 			 $(document).ready(function() {  
 			  var count=0
-			  
+			 
 			  $("#breakfastcontainer").hide();
 			  
 		
 			  
 		
 			 
-			 $.get("http://localhost:8080/yaakovRestaurant/rs/HomePage", function(response){ //response is a string that contains the name of the categorys, like lunch. 
-			  valuesOfCategorys= response.split(" ");	// valuesOfCategorys= ["breakfast", "lunch", "wine"];
+		$.get("http://localhost:8080/yaakovRestaurant/rs/HomePage", function(response){ //get all categorys
+			 this.allCategorys=response;
+			
+
 			 })
 			 .success(function() {
-				setValuesInButtons();	
-				replaceHtmlByButtonClick();			 
+				 createCategorysStructure(this.allCategorys);		 
 			   })
 			  .fail(function() {
 				alert( "error" );
 			  }); 
+		
+		 
+		$.get("http://localhost:8080/yaakovRestaurant/rs/dish", function(response){ //get all dishes
+			//alert(response[0].name);
+			 createDishStructure(response);		 
+
+			 })
+			 .success(function() {
+				
+			   })
+			  .fail(function() {
+				alert( "error" );
+			  }); 
+		
+		
+		
 			  
 				  
 				function setValuesInButtons()
@@ -106,7 +123,13 @@
 						return false;//cancel default action; prevent container from toggle;
 					});//end of addButton 1.click
 				
-				
+					$(".rowDessert").click(function() {
+						alert("toggle ");
+						$(".row"+allCategorys[2]).toggle(800);
+						$(".row"+allCategorys[2]).toggle(800);
+						
+						
+						}); //end of breakfast.click
 				
 
 				$(".btn").click(function(){
@@ -132,7 +155,88 @@
 		
 				
 				
-				}); 
+				});
+	 
+	 			function createDishStructure(allDishs)
+	 			{
+	 	
+	 		
+	 				for(var i=0; i<allDishs.length; i++)
+	 					{
+	 		//	$('<img class="rounded-circle img-fluid d-block mx-auto"  src="img/breakfast/omelet.jpg" alt="">').insertAfter("#row");
+	 					//$(".row").append('<img class="rounded-circle img-fluid d-block mx-auto"  src="img/breakfast/omelet.jpg" alt="">');
+	 					
+	 					$(".row"+allDishs[i].category).append(
+	 							'<div class="col-lg-4 col-sm-6 text-center mb-4">'+
+ 								'<img class="rounded-circle img-fluid d-block mx-auto"  src='+allDishs[i].imagePath+' alt="">'+
+									'<h3>'+
+									allDishs[i].name+
+										'<small>'+allDishs[i].price+'$</small>'+
+											 '<input class="addButton 1" type="image" src="img/add.png" />'+
+											'<span id="span1">+0</span> <input class="removeButton 1" type="image" src="img/remove.png" />'+
+										
+								'</h3>'+
+								'<p>'+allDishs[i].info+'</p>'+
+						'</div>');
+	 		
+	 					}
+	 					
+	 			}
+	 
+	 			function createCategorysStructure(allCategorys)
+	 			{
+	 	
+	 				for(var i=0; i<allCategorys.length; i++)
+	 					{
+	 				//	$("#menu").append("<div class='resume-item d-flex flex-column img-thumbnail flex-md-row mb-5'>  <div class='resume-content mr-auto'> <h3 class='mb-0' >Breakfast</h3>  
+	 				//<div class='subheading mb-3'>The most important meal of the day</div>    <p>Enjoy our vast & tasteful food</p>
+	 				//<img class='img-fluid img-profile rounded-circle img-responsive mx-auto mb-2' id='breakfastpicture' src='img\categorys\breakfast.jpg' alt="" width='30%'>");
+		 					$("#menu").append(
+		 					"<div class='resume-item d-flex flex-column img-thumbnail flex-md-row mb-5' id="+allCategorys[i]+">"+
+		 							"<div class='resume-content mr-auto'>"+
+		 								"<h3 class='mb-0'>"+allCategorys[i]+"</h3>"+
+		 						
+		 								"<div class='subheading mb-3'>The most important meal of the day</div> "+
+		 								"<p>Enjoy our vast & tasteful food</p>"+
+		 								"<img class='img-fluid img-profile rounded-circle img-responsive mx-auto mb-2'  src='img/categorys/dessert.jpg'  width='30%'>"+
+		 								"<div class='container'>"+
+		 								
+		 							
+		 							'<div class="row'+allCategorys[i]+'">'+
+							
+							
+		 						 		    "</div>"+
+		 				  			    "</div>"+
+		 				            "</div>"+
+		 				            "<div class='resume-date text-md-right'>"+
+		 				                "<span class='text-primary'>07:00-10:00</span>"+
+		 				           " </div>"+
+		 				     "</div>");
+		 					
+		 				//	$(".row"+allCategorys[i]).hide();
+		 			
+		 				//	$("#"+allCategorys[i]).hide();
+
+						 $("#"+allCategorys[i]).on('click', {'idx': i}, function(e) {
+    					alert('you clicked ' + e.data.idx);
+    					//	$(".row"+allCategorys[i]).toggle(800);
+    						$(".row"+allCategorys[i]).hide();
+    					
+ 						 });
+
+		 				   
+		 					//	$(".row"+allCategorys[i]).toggle(800);
+		 						
+		 								
+		 					
+		 					
+	 					}
+	 				
+	 			}
+	 			
+
+	 			
+	
 				
 		
 				function sendWaiterRequest()
@@ -153,12 +257,13 @@
 				
 				function billRequest()
 				{
-				alert("billRequest");
-				var tableNumber=10;
-				 $.post("http://localhost:8080/yaakovRestaurant/rs/HomePage/bill?tableNumber="+tableNumber, function(){
+			
+				var idOrder=Math.floor((Math.random() * 1000) + 1);;
+				 $.post("http://localhost:8080/yaakovRestaurant/rs/check?idOrder="+idOrder, function(){
 					 })
 					.success(function() {	
-					$("#myModalBill").modal('show');
+						alert("billRequest sucess");
+				//	$("#myModalBill").modal('show');
 					  })
 				   .fail(function() {
 					alert( "error" );
@@ -210,9 +315,11 @@
     <!-- end of side navigator -->
 	
 	
-	<!-- start of title -->
+
     <div class="container-fluid p-0">
 
+
+	<!-- start of title -->
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
         <div class="my-auto">
           <h1 class="mb-0">name
@@ -267,13 +374,13 @@
 			  
 			  <img class="img-fluid img-profile rounded-circle img-responsive mx-auto mb-2" id="breakfastpicture" src="img\categorys\breakfast.jpg" alt="" width="30%">
 			   <!-- Page Content -->
-    <div class="container" id="breakfastcontainer">
+    <div class="container">
 
 
       <!-- Team Members Row -->
       <div class="row">
 	  
-        <div class="col-lg-4 col-sm-6 text-center mb-4" id="omeletdiv">
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
           <img class="rounded-circle img-fluid d-block mx-auto"  src="img\breakfast\omelet.jpg" alt="">
 		 
           <h3>
@@ -316,14 +423,17 @@
           </h3>
           <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
         </div>
-        <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
-          <h3>John Smith
-            <small>Job Title</small>
-          </h3>
-          <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
-        </div>
-      </div>
+        
+        
+		        <div class="col-lg-4 col-sm-6 text-center mb-4">
+		          <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+		          <h3>John Smith
+		            <small>Job Title</small>
+		          </h3>
+		          <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+		        </div>
+        
+     </div>
 
     </div>
     <!-- /.container -->
@@ -334,8 +444,13 @@
               <span class="text-primary">07:00-10:00</span>
             </div>
           </div> 
-		  
+          
+          
+          <!-- Start of dessert -->
 		            <div class="resume-item d-flex flex-column img-thumbnail flex-md-row mb-5" >
+		            
+		            
+		            
             <div class="resume-content mr-auto">
               <h3 class="mb-0">Dessert</h3>
               <div class="subheading mb-3">The most fun meal of the day</div>

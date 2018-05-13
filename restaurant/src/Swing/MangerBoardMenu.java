@@ -68,8 +68,10 @@ public class MangerBoardMenu {
 	private JTable tableCheck;
 	private static JLayeredPane layeredPane;
 	public static JPanel[] allJPanels;
+	
 	  ArrayList<WaiterHelp> allWaiterHelp;
 	 private  Button buttonHelp;//= new Button();
+	private	Button buttonCheck;
 	  private ArrayList<Dish> allDishes;
 		int selectRow;
 		int selectCoulmn;
@@ -83,6 +85,8 @@ public class MangerBoardMenu {
 	 private JTextField textFieldPrice;
 	 private JTextField textFieldCategory;
 	 private JTextField textFieldImagePath;
+	 private JTextField textFieldIp;
+	 private JTextField textFieldTableNumber;
 
 	/**
 	 * Launch the application.
@@ -122,7 +126,7 @@ public class MangerBoardMenu {
 	 */
 	private void initialize() {
 	
-		 
+		   allChecks= (ArrayList)CheckServlet.getAllChecks();
 		frame = new JFrame();
 		frame.setBounds(100, 100, 702, 453);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -143,28 +147,32 @@ public class MangerBoardMenu {
 	  
 		verticalBox.add(buttonHelp);
 		
-		Button buttonChat = new Button("chat");
-
-		verticalBox.add(buttonChat);
-		
-		Button buttonCheck = new Button("Checks +("+allChecks.size()+")");
+		 buttonCheck = new Button("Checks +("+allChecks.size()+")");
 		
 
 		verticalBox.add(buttonCheck);
+		
+		Button buttonOrders = new Button("Orders");
+		verticalBox.add(buttonOrders);
+		
+		Button buttonChat = new Button("chat");
+		
+				verticalBox.add(buttonChat);
+				
+				buttonChat.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("buttonChat was clicked");
+					//	showPanel();
+						
+					}
+				});
 		
 		 layeredPane = new JLayeredPane();
 		layeredPane.setBackground(Color.YELLOW);
 		layeredPane.setToolTipText("sfsd");
 		frame.getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
-		  DefaultTableModel model = new DefaultTableModel()
-				  {
-			  @Override
-			  public boolean isCellEditable(int row, int col) {
-				  return col==2;
-				  }
-				  };
-
+		
 
 		
 		JPanel panel = new JPanel();
@@ -260,15 +268,7 @@ public class MangerBoardMenu {
 		scrollPane_2.setBounds(0, 34, 618, 254);
 		panelMenu.add(scrollPane_2);
 		
-	    model.addColumn("Table Number");
-        model.addColumn("time");
-        model.addColumn("still vaild");
-
-	    for(WaiterHelp waiterHelp: allWaiterHelp)
-	    {
-		   model.addRow(new Object[]{waiterHelp.getTableNumber(), waiterHelp.getTime(), false });   
-	    }
-		
+	  
 	  
 	
 
@@ -297,6 +297,8 @@ public class MangerBoardMenu {
     }
     
 		};
+		
+	//	tableMenu.getColumn(0).setPreferredWidth(50);
 		setValueOfCellsInMiddle(tableMenu);
 //		tableMenu.addPropertyChangeListener(new PropertyChangeListener() {
 //			
@@ -346,11 +348,13 @@ public class MangerBoardMenu {
 	
 
 			
-	
+		
 
 		scrollPane_2.setViewportView(tableMenu);
 		tableMenu.setForeground(Color.BLACK);
 		tableMenu.setBackground(Color.WHITE);
+		tableMenu.getColumnModel().getColumn(0).setPreferredWidth(10000000);
+		tableMenu.setPreferredScrollableViewportSize(tableMenu.getPreferredSize());
 		//tableMenu.setEnabled(false);
 		layeredPane.setLayer(tableMenu, 0);
 		
@@ -380,7 +384,7 @@ public class MangerBoardMenu {
 		panelHelpWaiter.add(scrollPaneTableWaiter);
 		layeredPane.setLayer(scrollPaneTableWaiter, 2);
 		
-		tableWaiter = new JTable(model)
+		tableWaiter = new JTable(createModelForTableWaiter())
 				{
 			    private static final long serialVersionUID = 1L;
 
@@ -484,12 +488,54 @@ public class MangerBoardMenu {
 		
 		textFieldImagePath = new JTextField();
 		textFieldImagePath.setColumns(10);
-		textFieldImagePath.setBounds(417, 61, 116, 22);
+		textFieldImagePath.setBounds(417, 61, 163, 54);
 		createdishpanel.add(textFieldImagePath);
 		
 		JLabel lblImagePath = new JLabel("Image path:");
 		lblImagePath.setBounds(315, 64, 90, 16);
 		createdishpanel.add(lblImagePath);
+		
+		JPanel createTableNumberPanel = new JPanel();
+		layeredPane.setLayer(createTableNumberPanel, 0);
+		createTableNumberPanel.setBounds(0, 53, 599, 353);
+		layeredPane.add(createTableNumberPanel);
+		createTableNumberPanel.setLayout(null);
+		
+		JLabel lblNewLabel_3 = new JLabel("Create Table");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		lblNewLabel_3.setIcon(new ImageIcon(MangerBoardMenu.class.getResource("/com/sun/javafx/scene/control/skin/caspian/pattern-transparent.png")));
+		lblNewLabel_3.setBounds(227, 0, 166, 22);
+		createTableNumberPanel.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Ip:");
+		lblNewLabel_4.setBounds(99, 104, 56, 16);
+		createTableNumberPanel.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Table number:");
+		lblNewLabel_5.setBounds(91, 137, 87, 16);
+		createTableNumberPanel.add(lblNewLabel_5);
+		
+		JButton btnNewButton = new JButton("Save table");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				textFieldIp.getText();
+				textFieldTableNumber.getText();
+				
+			}
+		});
+		btnNewButton.setBounds(243, 289, 97, 25);
+		createTableNumberPanel.add(btnNewButton);
+		
+		textFieldIp = new JTextField();
+		textFieldIp.setBounds(224, 101, 116, 22);
+		createTableNumberPanel.add(textFieldIp);
+		textFieldIp.setColumns(10);
+		
+		textFieldTableNumber = new JTextField();
+		textFieldTableNumber.setBounds(224, 136, 116, 22);
+		createTableNumberPanel.add(textFieldTableNumber);
+		textFieldTableNumber.setColumns(10);
 		
 
 		buttonSaveHelpStatus.addActionListener(new ActionListener() {
@@ -498,6 +544,9 @@ public class MangerBoardMenu {
 				//List<Object> objects= new ArrayList<Object>(allWaiterHelp);
 				//objects.addAll(allWaiterHelp);
 				updateObjects(allWaiterHelp);
+				tableWaiter.setModel(createModelForTableWaiter());
+				buttonHelp.setLabel("Help +("+allWaiterHelp.size()+")");
+				
 			//	updateObjects(allWaiterHelp);
 				//saveObjectsInDB();
 			}
@@ -509,6 +558,7 @@ public class MangerBoardMenu {
 				updateCheckBox();
 				updatePrices();
 				DishServlet.updateAllDishes(allDishes);
+				tableMenu.setModel(createModuleForTableMenu());
 			}
 
 			private void updateMenu(ArrayList<Dish> allDishes) {
@@ -532,18 +582,15 @@ public class MangerBoardMenu {
 		tableWaiter.setDefaultRenderer(String.class, centerRenderer);
 		*/
 		
-		allJPanels = new JPanel[] {panelCheck,panelMenu,panelHelpWaiter, createdishpanel };
+		allJPanels = new JPanel[] {panelCheck,panelMenu,panelHelpWaiter, createdishpanel, createTableNumberPanel };
+		
 			buttonCheck.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+				//	tableCheck.setModel(createModelForTableCheck());
+					tableCheck.setModel(new DefaultTableModel());
+					tableCheck.setModel(createModelForTableCheck());
 					showPanel(allJPanels[0]);
-					
-				}
-			});
-			
-			buttonChat.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("buttonChat was clicked");
-				//	showPanel();
+					buttonCheck.setLabel("Checks +("+allChecks.size()+")");
 					
 				}
 			});
@@ -551,13 +598,17 @@ public class MangerBoardMenu {
 		
 			buttonHelp.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					tableWaiter.setModel(createModelForTableWaiter());
 					showPanel(allJPanels[2]);
+					buttonHelp.setLabel("help +("+allWaiterHelp.size()+")");
 				}
 			});
 			buttonMenu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					tableMenu.setModel(createModuleForTableMenu());
 					showPanel(allJPanels[1]);
 					System.out.println("buttonMenu was clicked");
+					
 				}
 			});
 			
@@ -584,6 +635,7 @@ public class MangerBoardMenu {
 	
 
 	private DefaultTableModel createModelForTableCheck() {
+	
 		DefaultTableModel modelForTableCheck = new DefaultTableModel()
 		  {
 	  @Override
@@ -598,7 +650,8 @@ public class MangerBoardMenu {
 		  modelForTableCheck.addColumn("Price");
 		  modelForTableCheck.addColumn("Served check");
 		  
-	     allChecks= (ArrayList)CheckServlet.getAllChecks();
+			allChecks =(ArrayList) CheckServlet.getAllChecks();
+	  
 		int count=1;
 		for(Check check: allChecks)
 		{
@@ -612,6 +665,32 @@ public class MangerBoardMenu {
 		return modelForTableCheck;
 		
 	}
+	
+	
+	private DefaultTableModel createModelForTableWaiter() {
+		
+		DefaultTableModel model = new DefaultTableModel()
+		  {
+	  @Override
+	  public boolean isCellEditable(int row, int col) {
+		  return col==2;
+		  }
+		  };
+		  model.addColumn("Table Number");
+	        model.addColumn("time");
+	        model.addColumn("still vaild");
+	        
+	        allWaiterHelp= (ArrayList) WaiterHelpServlet.getAllWaiterHelpData();
+		    for(WaiterHelp waiterHelp: allWaiterHelp)
+		    {
+			   model.addRow(new Object[]{waiterHelp.getTableNumber(), waiterHelp.getTime(), false });   
+		    }
+			
+		 
+		
+		return model;
+	}
+	
 
 	protected void updatePrices() {
 		int count=0;
@@ -705,7 +784,7 @@ public class MangerBoardMenu {
 		  int count=1;
 		for(Dish dish: allDishes)
 		{
-			modelForTableMenu.addRow(new Object[]{count,dish.getName(), "category",dish.getInfo(),
+			modelForTableMenu.addRow(new Object[]{count,dish.getName(), dish.getCategory(),dish.getInfo(),
 						dish.getPrice(), dish.getImagePath(),dish.isAvailable() }); 
 			count++;
 		}

@@ -15,19 +15,19 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+
 
 import backend.DbSessionManager;
 import backend.entities.Dish;
 import backend.entities.Order;
 import backend.entities.WaiterHelp;
 
-import org.json.*;
+
 
 
 
@@ -35,7 +35,17 @@ import org.json.*;
 @Path("dish")
 public class DishServlet {
 	
-	//http://localhost:8080/yaakovRestaurant/rs/dish?idCategory=1
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response allDishesOrderByCategory()
+	{
+		System.out.println("INSIDE allDishes()");
+		
+		return Response.ok(getAllDishes()).build();
+		
+	}
+	/*
+	http://localhost:8080/yaakovRestaurant/rs/dish?idCategory=1
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getAllDishsInCategory(@QueryParam("idCategory") int idCategory)
@@ -50,12 +60,13 @@ public class DishServlet {
         criteria.where(builder.equal(root.get("idCategory"), idCategory));
         Query query = session.createQuery(criteria);
         List<Dish> allDishes = query.getResultList();
-        Gson gson = new Gson();
+    //    Gson gson = new Gson();
         
         session.close();
 
 		return gson.toJson(allDishes).toString(); //without the gson. the method will return the location in the memory.
 	}
+	*/
 	
 	@POST
 	//@Consumes
@@ -95,6 +106,7 @@ public class DishServlet {
         
 	}
 	
+
 	public static  List<Dish> getAllDishes()
 	{
 		DbSessionManager sessionManager = new DbSessionManager();
@@ -102,15 +114,24 @@ public class DishServlet {
         
        
         CriteriaBuilder builder = session.getCriteriaBuilder();
+      
         CriteriaQuery criteria = builder.createQuery(Dish.class);
         Root<Dish> root = criteria.from(Dish.class);
+        criteria.orderBy(     builder.desc(root.get("category")));
         Query query = session.createQuery(criteria);
-     //   System.out.println("getAllDishes" );
-        List<Dish> allWaiterHelp = query.getResultList();
-       // System.out.println("getAllDishes" +allWaiterHelp.size());
+        
+        
  
+     //   System.out.println("getAllDishes" );
+        
+      //  criteria.orderBy(builder.asc(root.get(Dish.)))
+      
+        
+        List<Dish> allDishes = query.getResultList();
+       // System.out.println("getAllDishes" +allWaiterHelp.size());
+        
   
-		return allWaiterHelp;
+		return allDishes;
         
 	}
 
