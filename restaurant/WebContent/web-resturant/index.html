@@ -172,16 +172,32 @@
 									'<h3>'+
 									allDishs[i].name+
 										'<small>'+allDishs[i].price+'$</small>'+
-											 '<input class="addButton 1" type="image" src="img/add.png" />'+
-											'<span id="span1">+0</span> <input class="removeButton 1" type="image" src="img/remove.png" />'+
+											 '<input class="addButtonA" type="image" src="img/add.png" />'+
+											'<span id="span1">+0</span> <input class="removeButton" type="image" src="img/remove.png" />'+
 										
 								'</h3>'+
 								'<p>'+allDishs[i].info+'</p>'+
 						'</div>');
+	 					
+	 				
 	 		
 	 					}
+	 				updateDishNumber()
+	 				
+			
 	 					
 	 			}
+	 			function updateDishNumber()
+	 			{
+	 				var allAddButtons = document.getElementsByTagName("addButtonA");
+	 				alert(allAddButtons.length);
+	 				for(var i=0; i<allAddButtons.length; i++)
+	 					{
+	 				
+	 					}
+	 			}
+	 			
+	 	
 	 
 	 			function createCategorysStructure(allCategorys)
 	 			{
@@ -199,6 +215,7 @@
 		 								"<div class='subheading mb-3'>The most important meal of the day</div> "+
 		 								"<p>Enjoy our vast & tasteful food</p>"+
 		 								"<img class='img-fluid img-profile rounded-circle img-responsive mx-auto mb-2'  src='img/categorys/dessert.jpg'  width='30%'>"+
+		 								<!-- src='img/categorys/"+allCategorys[i]+".jpg'-->
 		 								"<div class='container'>"+
 		 								
 		 							
@@ -217,12 +234,12 @@
 		 			
 		 				//	$("#"+allCategorys[i]).hide();
 
-						 $("#"+allCategorys[i]).on('click', {'idx': i}, function(e) {
-    					alert('you clicked ' + e.data.idx);
+//					 $("#"+allCategorys[i]).on('click', {'idx': i}, function(e) {
+    				//	alert('you clicked ' + e.data.idx);
     					//	$(".row"+allCategorys[i]).toggle(800);
-    						$(".row"+allCategorys[i]).hide();
+    				//		$(".row"+allCategorys[i]).hide();
     					
- 						 });
+ 					//	 });
 
 		 				   
 		 					//	$(".row"+allCategorys[i]).toggle(800);
