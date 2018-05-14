@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,14 +17,17 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import com.google.gson.Gson;
 
 import Swing.MangerBoardMenu;
 import backend.DbSessionManager;
+import backend.entities.Check;
+import backend.entities.Dish;
+import backend.entities.Order;
 import backend.entities.WaiterHelp;
+import backend.servlet.CheckServlet;
+import backend.servlet.DishServlet;
+import backend.servlet.HomePageServlet;
 import backend.servlet.WaiterHelpServlet;
 
 
@@ -43,6 +47,113 @@ public class Main {
 	
 
    public static void main(String[] args) {
+		   MangerBoardMenu window = MangerBoardMenu.getInstance();   
+		   window.getFrame().setVisible(true);
+		   
+//		   HomePageServlet h= new HomePageServlet();
+//		   h.waiterComeHelp(12);
+
+	   
+//		   Order order= DishServlet.getOrderById(3);
+//		   System.out.println(order.getComment());
+//		   System.out.println(order.getTableNumber());
+//			order.setComment("this is a order from main");
+//			order.setOrderDishes("1 pizza 2 water");
+//			order.setPrice(10);
+//			order.setTableNumber(12);
+//		//	order.setIdOrder(3);
+//			order.setTime("now 7:13");
+		
+//	  
+	   /*
+	    //save check in db
+		 Check check= new Check();
+		   check.setidorder(1);
+		   check.setTime("11:16");
+		   
+					DbSessionManager sessionManager = new DbSessionManager();
+				     Session session = sessionManager.getSessionFactoryInstance().openSession();
+				     session.beginTransaction();
+				     session.save(check);
+				     session.getTransaction().commit(); 
+				     */
+
+//			ArrayList<Check> allChecks= (ArrayList)CheckServlet.getAllChecks();
+//		for(Check check: allChecks)
+//		{
+//			System.out.println("check.getidorder().getTableNumber()"+check.getidorder().getTableNumber());
+//	 
+//		}
+
+
+	   
+//	 DishServlet dishServlet= new DishServlet();
+//	 
+//		  ArrayList<Dish> allDishes= (ArrayList)dishServlet.getAllDishes();
+//		  int count=1;
+//		for(Dish dish: allDishes)
+//		{
+//			
+//			System.out.println(dish.getName()+ "category"+dish.getInfo());
+//		}
+//	   
+//	   Dish dish= new Dish();
+//	   dish.setAvailable(true);
+//
+//	   dish.setInfo("Fresh and testy Ice cream");
+//	   dish.setName("Ice cream");
+//	   dish.setPrice(15);
+//		DbSessionManager sessionManager = new DbSessionManager();
+//	     Session session = sessionManager.getSessionFactoryInstance().openSession();
+//	     session.beginTransaction();
+//	     session.save(dish);
+//	     session.getTransaction().commit();
+//	   
+
+		  
+	
+	   
+	  //  Save order in db
+//	    	   Order order= new Order();
+//	   order.setComment("with out onion");
+//	   order.setOrderDishes("Water");
+//	   order.setPrice(10);
+//	   order.setTableNumber(12);
+//	   order.setTime("11:01");
+//	   
+//		DbSessionManager sessionManager = new DbSessionManager();
+//     Session session = sessionManager.getSessionFactoryInstance().openSession();
+//     session.beginTransaction();
+//     session.save(order);
+//     session.getTransaction().commit(); 
+	//    */
+
+//	   System.out.println("window help from menu"+window.getButtonHelp().hashCode());
+//	   window.getButtonHelp().setLabel("window1");
+//	   MangerBoardMenu window2 = MangerBoardMenu.getInstance();
+//	   System.out.println("window help from menu"+window2.getButtonHelp().hashCode());
+//	   window2.getButtonHelp().setLabel("window2");
+	 
+//	   if( MangerBoardMenu.getButtonHelp()==null)
+//	   {
+//		   System.out.println("null");
+//	   }
+//	   MangerBoardMenu.getButtonHelp().setLabel("help (+");
+	  // System.out.println("MangerBoardMenu.getButtonHelp(): "+MangerBoardMenu.getButtonHelp().hashCode());
+	   
+	//   MangerBoardMenu.setTextforButtonHelp("main 2");
+
+//		DbSessionManager sessionManager = new DbSessionManager();
+//        Session session = sessionManager.getSessionFactoryInstance().openSession();
+//        WaiterHelp waiterhelp= new WaiterHelp();
+//        waiterhelp.setTableNumber(12);
+//        LocalDateTime localDateTime= LocalDateTime.now().withSecond(0).withNano(0);
+//        waiterhelp.setTime(localDateTime.toLocalTime().toString() );
+//        
+//        session.beginTransaction();
+//        session.save(waiterhelp);
+   //     session.getTransaction().commit();
+		
 	  
 
 	
@@ -53,17 +164,18 @@ public class Main {
 //		Session session = sessionManager.getSessionFactoryInstance().openSession();
 //		session.save(or);
 //		session.close();
-	   WaiterHelpServlet servlet= new WaiterHelpServlet();
 	   
-	   ArrayList<WaiterHelp> allWaiterHelp= (ArrayList) servlet.getAllWaiterHelpData();
-	   for(WaiterHelp waiterHelp: allWaiterHelp)
-	   {
-		   System.out.println(waiterHelp.getTableNumber());
-	   }
-	
+	   
+//	   WaiterHelpServlet servlet= new WaiterHelpServlet();
+//	   
+//	   ArrayList<WaiterHelp> allWaiterHelp= (ArrayList) servlet.getAllWaiterHelpData();
+//	   for(WaiterHelp waiterHelp: allWaiterHelp)
+//	   {
+//		   System.out.println(waiterHelp.getTableNumber());
+//	   }
+//	
 	   
 		
-	   System.out.println("bla: ");
 	   
 //		EventQueue.invokeLater(new Runnable() {
 //			public void run() {

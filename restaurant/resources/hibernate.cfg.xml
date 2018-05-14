@@ -25,5 +25,9 @@
         <property name="hibernate.id.new_generator_mappings">false</property>
 
         <mapping class="backend.entities.WaiterHelp"/>
+         <mapping class="backend.entities.Order"/>
+         <mapping class="backend.entities.Check"/>
+         <mapping class="backend.entities.Dish"/>
+         <mapping class="backend.entities.TableNumber"/>
         </session-factory>
         </hibernate-configuration>

@@ -5,14 +5,15 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="dish") 
+@Table(name="dish2") 
 public class Dish {
 	int idDish; //primary key
 	boolean available;
-	float price;
+	double price;
 	String info;
-	int idCategory; //foreign key 
 	String name;
+	String imagePath;
+	String category;
 	//int translation_id; //apper in Trello. 
 	
 	@Id
@@ -25,6 +26,14 @@ public class Dish {
 		this.idDish = idDish;
 	}
 	
+	
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
 	@Column
 	public boolean isAvailable() {
 		return available;
@@ -34,10 +43,10 @@ public class Dish {
 	}
 	
 	@Column
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	
@@ -50,14 +59,14 @@ public class Dish {
 	}
 	
 	
-	@Column
-	public int getIdCategory() {
-		return idCategory;
-	}
-	public void setIdCategory(int idCategory) {
-		this.idCategory = idCategory;
-	}
 	
+	@Column
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	@Column
 	public String getName() {
 		return name;
