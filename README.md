@@ -6,30 +6,23 @@ Full-Stack project, restaurant customer services (order, chat, bill, etc.)
 
 
 
-The home page is the menu of a restaurant:
-
-
-
-<img src="https://github.com/Yoavlo/Resturant-app/blob/master/jegesh-restaurant-perks-5cadcaf80b8e/readmeimages//homepage.bmp">
-
 
 This app allows the customer of a restaurant to do diffrent actions:
+Customer side:
 1. Order from the restaurant menu.
 2. Ask for the check.
 3. "Watier come please" button.
 4. Chat with staff.
 
+The home page is the menu of a restaurant:
+<img src="https://github.com/Yoavlo/Resturant-app/blob/yoav/restaurant/WebContent/web-resturant/img/readme/homepage.bmp">
+
+The menu:
+<img src="https://github.com/Yoavlo/Resturant-app/blob/yoav/restaurant/WebContent/web-resturant/img/readme/menu.bmp">
+
+Waiter/Manager side there is a possibility to manage the orders, check and a "Waiter come please" request
+
+<img src="https://github.com/Yoavlo/Resturant-app/blob/yoav/restaurant/WebContent/web-resturant/img/readme/mangerboard.bmp">
 
 
-
-
-
-
-Click on each category on the menu in the home page, will lead to the dishes on the that category:
-<img src="https://github.com/Yoavlo/Resturant-app/blob/master/jegesh-restaurant-perks-5cadcaf80b8e/readmeimages/menu.bmp">
-
-
-
-Chat with a watier:
-<img src="https://github.com/Yoavlo/Resturant-app/blob/master/jegesh-restaurant-perks-5cadcaf80b8e/readmeimages/chat.bmp">
 
